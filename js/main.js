@@ -181,19 +181,15 @@
 
     function Dot() {
       this.reset = function () {
-        this.x       = Math.random() * canvas.width;
-        this.y       = canvas.height + Math.random() * 100;
-        this.r       = Math.random() * 1.6 + 0.4;
-        this.vy      = Math.random() * 0.55 + 0.18;
-        this.vx      = (Math.random() - 0.5) * 0.35;
-        this.alpha   = 0;
-        this.life    = 0;
-        this.maxLife = Math.random() * 260 + 120;
-        this.color   = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.x     = Math.random() * canvas.width;
+        this.y     = canvas.height + Math.random() * 100;
+        this.r     = Math.random() * 1.6 + 0.4;
+        this.vy    = Math.random() * 0.7 + 0.3;
+        this.vx    = (Math.random() - 0.5) * 0.35;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
       };
       this.reset();
-      this.y    = Math.random() * canvas.height;
-      this.life = Math.random() * this.maxLife;
+      this.y = Math.random() * canvas.height; // seed across full height
     }
 
     function FoodItem(cx, cy) {
@@ -227,19 +223,17 @@
       frame++;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Passively drift in a food emoji every ~320 frames
-      if (frame % 320 === 0 && foodItems.length < MAX_FOOD) spawnFood();
+      // Passively drift in a food emoji every ~3 seconds (180 frames @ 60fps)
+      if (frame % 180 === 0 && foodItems.length < MAX_FOOD) spawnFood();
 
-      // Draw dots
+      // Draw dots — position-based fade so they travel the full height
       dots.forEach(function (p) {
-        p.life++;
         p.y -= p.vy;
         p.x += p.vx;
-        var half = p.maxLife / 2;
-        p.alpha = p.life < half
-          ? (p.life / half) * 0.55
-          : ((p.maxLife - p.life) / half) * 0.55;
-        if (p.life >= p.maxLife || p.y < -10) p.reset();
+        var fadeIn  = Math.min(1, (canvas.height - p.y) / 120);
+        var fadeOut = Math.min(1, Math.max(0, p.y / 80));
+        p.alpha = fadeIn * fadeOut * 0.6;
+        if (p.y < -10) p.reset();
         ctx.save();
         ctx.globalAlpha = p.alpha;
         ctx.shadowBlur  = 7;

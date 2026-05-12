@@ -7,9 +7,11 @@
   <meta name="description" content="Tell Irio what's in your kitchen and it decides what you eat. AI-powered Kenyan recipes, meal planning, cocktails and more. Free Android app.">
   <meta property="og:title" content="Irio — Your Personal Kenyan Chef">
   <meta property="og:description" content="From pilau to Dawa cocktails. Tell Irio what you have and it handles the rest.">
-  <meta property="og:image" content="images/Irio.png">
+  <meta property="og:image" content="https://kudimbua.tech/images/Irio.png">
+  <meta property="og:url" content="https://kudimbua.tech">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://kudimbua.tech/images/Irio.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
@@ -41,7 +43,7 @@
         <li><a href="#how">How it works</a></li>
         <li><a href="#screenshots">Screenshots</a></li>
       </ul>
-      <a href="#download" class="nav-cta">Get the App</a>
+      <a href="irio.apk" class="nav-cta" download>Get the App</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -54,7 +56,7 @@
     <a href="#recipes" class="mobile-link">Recipes</a>
     <a href="#how" class="mobile-link">How it works</a>
     <a href="#screenshots" class="mobile-link">Screenshots</a>
-    <a href="#download" class="mobile-cta">Download APK — Free</a>
+    <a href="irio.apk" class="mobile-cta" download>Download APK — Free</a>
   </div>
 
   <main>
@@ -80,7 +82,7 @@
           Tell Irio what's in your kitchen — it decides what you eat. From pilau to Dawa cocktails, one app covers everything.
         </p>
         <div class="hero-actions">
-          <a href="#download" class="btn-primary">
+          <a href="irio.apk" class="btn-primary" download>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download APK — Free
           </a>
@@ -501,21 +503,7 @@
             <div class="screen-frame">
               <div class="screen-notch"></div>
               <div class="screen-inner">
-                <!-- Swap for real screenshot: <img src="images/screen-cook.png" alt="Cook screen"> -->
-                <div class="screen-placeholder cook-screen">
-                  <div class="sp-bar">Cook</div>
-                  <div class="sp-body">
-                    <div class="sp-row">
-                      <div class="sp-tile sel">Rice</div><div class="sp-tile">Onion</div>
-                      <div class="sp-tile sel">Beef</div><div class="sp-tile">Garlic</div>
-                    </div>
-                    <div class="sp-row">
-                      <div class="sp-tile sel">Oil</div><div class="sp-tile">Tomato</div>
-                      <div class="sp-tile">Milk</div><div class="sp-tile sel">Ginger</div>
-                    </div>
-                    <div class="sp-btn">Find Recipes</div>
-                  </div>
-                </div>
+                <img src="images/screen_cook.png" alt="Cook screen — pick your ingredients">
               </div>
             </div>
             <p class="screen-label">Pick Ingredients</p>
@@ -526,32 +514,7 @@
             <div class="screen-frame">
               <div class="screen-notch"></div>
               <div class="screen-inner">
-                <div class="screen-placeholder recipe-screen">
-                  <div class="sp-bar">Recipes</div>
-                  <div class="sp-body">
-                    <div class="sp-card">
-                      <div class="sp-card-color c1"></div>
-                      <div class="sp-card-info">
-                        <div class="sp-card-name">Pilau</div>
-                        <div class="sp-card-chips"><span>60 min</span><span>Medium</span></div>
-                      </div>
-                    </div>
-                    <div class="sp-card">
-                      <div class="sp-card-color c2"></div>
-                      <div class="sp-card-info">
-                        <div class="sp-card-name">Chicken Wet Fry</div>
-                        <div class="sp-card-chips"><span>50 min</span><span>Easy</span></div>
-                      </div>
-                    </div>
-                    <div class="sp-card">
-                      <div class="sp-card-color c3"></div>
-                      <div class="sp-card-info">
-                        <div class="sp-card-name">Chapati</div>
-                        <div class="sp-card-chips"><span>45 min</span><span>Medium</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <img src="images/screen_recipes.png" alt="Recipes screen — AI-generated suggestions">
               </div>
             </div>
             <p class="screen-label">Get Recipes</p>
@@ -562,16 +525,7 @@
             <div class="screen-frame">
               <div class="screen-notch"></div>
               <div class="screen-inner">
-                <div class="screen-placeholder planner-screen">
-                  <div class="sp-bar">Meal Plan</div>
-                  <div class="sp-body">
-                    <div class="sp-day"><span class="sp-day-name">Mon</span><div class="sp-meals"><div class="sp-m b"></div><div class="sp-m l"></div><div class="sp-m d"></div></div></div>
-                    <div class="sp-day today"><span class="sp-day-name">Tue</span><div class="sp-meals"><div class="sp-m b"></div><div class="sp-m l"></div><div class="sp-m d"></div></div></div>
-                    <div class="sp-day"><span class="sp-day-name">Wed</span><div class="sp-meals"><div class="sp-m b"></div><div class="sp-m l"></div><div class="sp-m d"></div></div></div>
-                    <div class="sp-day"><span class="sp-day-name">Thu</span><div class="sp-meals"><div class="sp-m b"></div><div class="sp-m l"></div><div class="sp-m d"></div></div></div>
-                    <div class="sp-day"><span class="sp-day-name">Fri</span><div class="sp-meals"><div class="sp-m b"></div><div class="sp-m l"></div><div class="sp-m d"></div></div></div>
-                  </div>
-                </div>
+                <img src="images/screen_planne.png" alt="Meal planner screen — 7-day plan">
               </div>
             </div>
             <p class="screen-label">Plan Your Week</p>
@@ -606,7 +560,7 @@
             Works offline
           </span>
         </div>
-        <a href="YOUR_APK_URL_HERE" class="dl-btn reveal" download>
+        <a href="irio.apk" class="dl-btn reveal" download>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Irio — Free
         </a>
