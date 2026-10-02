@@ -285,13 +285,19 @@
     }, { passive: true });
 
     foodBurst = function (count) {
+      // Stagger spawns so they rise gently in a stream, not all at once
       for (var i = 0; i < count; i++) {
-        var f = new FoodItem(Math.random() * canvas.width, canvas.height + Math.random() * 120);
-        f.vy = Math.random() * 3 + 2.5;
-        f.size = Math.random() * 18 + 24;
-        foodItems.push(f);
+        setTimeout(function () {
+          var f = new FoodItem(Math.random() * canvas.width, canvas.height + 30);
+          f.vy       = Math.random() * 0.6 + 0.9;
+          f.size     = Math.random() * 10 + 24;
+          f.wAmp     = Math.random() * 0.8 + 0.3;
+          f.rotSpeed = (Math.random() - 0.5) * 0.004;
+          f.maxLife  = Math.ceil((canvas.height + 120) / f.vy);
+          foodItems.push(f);
+          if (foodItems.length > 30) foodItems.shift();
+        }, i * 220);
       }
-      if (foodItems.length > 80) foodItems.splice(0, foodItems.length - 80);
     };
 
     // Easter egg: click anywhere (not on a link/button) to pop a food emoji
@@ -310,7 +316,7 @@
     let toast;
 
     function unlock() {
-      if (foodBurst) foodBurst(40);
+      if (foodBurst) foodBurst(12);
       if (!toast) {
         toast = document.createElement('div');
         toast.className = 'jiko-toast';
