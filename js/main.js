@@ -158,6 +158,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 
   // ─── Full-page particles + food easter eggs ───────────────
+  let foodBurst = null; // set by initParticles; used by Jiko Mode
   (function initParticles() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const canvas = document.getElementById('hero-particles');
@@ -283,11 +284,67 @@
       tick();
     }, { passive: true });
 
+    foodBurst = function (count) {
+      for (var i = 0; i < count; i++) {
+        var f = new FoodItem(Math.random() * canvas.width, canvas.height + Math.random() * 120);
+        f.vy = Math.random() * 3 + 2.5;
+        f.size = Math.random() * 18 + 24;
+        foodItems.push(f);
+      }
+      if (foodItems.length > 80) foodItems.splice(0, foodItems.length - 80);
+    };
+
     // Easter egg: click anywhere (not on a link/button) to pop a food emoji
     document.addEventListener('click', function (e) {
       if (e.target.closest('a, button')) return;
       spawnFood(e.clientX, e.clientY);
     });
+  })();
+
+  // ─── Secret: Jiko Mode (type "ugali" or tap the logo 5×) ──
+  (function initJikoMode() {
+    const SECRET = 'ugali';
+    let typed = '';
+    let taps = 0;
+    let tapTimer;
+    let toast;
+
+    function unlock() {
+      if (foodBurst) foodBurst(40);
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'jiko-toast';
+        toast.setAttribute('role', 'status');
+        toast.innerHTML =
+          '<strong>🔥 Jiko Mode unlocked</strong>' +
+          '<span>Karibu jikoni! Mama’s tip: stir your ugali one way only — and never stop.</span>';
+        document.body.appendChild(toast);
+      }
+      toast.classList.remove('show');
+      void toast.offsetWidth; // restart animation
+      toast.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove('show'), 5000);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.closest('input, textarea, [contenteditable]')) return;
+      if (e.key.length !== 1) return;
+      typed = (typed + e.key.toLowerCase()).slice(-SECRET.length);
+      if (typed === SECRET) { typed = ''; unlock(); }
+    });
+
+    if (heroLogo) {
+      heroLogo.addEventListener('click', () => {
+        taps++;
+        clearTimeout(tapTimer);
+        tapTimer = setTimeout(() => { taps = 0; }, 1500);
+        if (taps >= 5) { taps = 0; unlock(); }
+      });
+    }
+
+    console.log('%c🍲 Irio', 'font-weight:900;font-size:16px;color:#c7472e',
+      '\nHungry for secrets? Try typing "ugali" on the page.');
   })();
 
   // ─── Init ──────────────────────────────────────────────────

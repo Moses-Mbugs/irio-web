@@ -1315,6 +1315,38 @@ footer {
   .hero-title { font-size: clamp(38px, 14vw, 58px); }
 }
 
+/* ─── Easter egg: Jiko Mode toast ─── */
+.jiko-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 2000;
+  width: min(420px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  background: var(--mustard);
+  color: var(--ink);
+  border: var(--line);
+  box-shadow: var(--hard-shadow);
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 140%) rotate(-2deg);
+  transition: transform 0.45s cubic-bezier(.2, 1.4, .4, 1), opacity 0.3s;
+}
+.jiko-toast strong {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.jiko-toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(-2deg);
+}
+.hero-logo-wrap { cursor: pointer; user-select: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
